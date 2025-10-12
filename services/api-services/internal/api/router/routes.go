@@ -1,20 +1,24 @@
 package router
 
 import (
-    "time"
+	"time"
 
-    "github.com/gin-contrib/cors"
-    "github.com/samaasi/uptime-application/services/api-services/internal/api/controllers"
-    "github.com/samaasi/uptime-application/services/api-services/internal/api/middleware"
-    "github.com/samaasi/uptime-application/services/api-services/internal/config"
-    "github.com/samaasi/uptime-application/services/api-services/internal/database"
-    "github.com/samaasi/uptime-application/services/api-services/pkg/cache"
-    "github.com/samaasi/uptime-application/services/api-services/pkg/notifier/email"
-    "github.com/samaasi/uptime-application/services/api-services/pkg/storage"
+	"github.com/gin-contrib/cors"
+	"github.com/samaasi/uptime-application/services/api-services/internal/api/controllers"
+	"github.com/samaasi/uptime-application/services/api-services/internal/api/middleware"
+	"github.com/samaasi/uptime-application/services/api-services/internal/api/repositories"
+	"github.com/samaasi/uptime-application/services/api-services/internal/api/services"
+	"github.com/samaasi/uptime-application/services/api-services/internal/config"
+	"github.com/samaasi/uptime-application/services/api-services/internal/database"
+	"github.com/samaasi/uptime-application/services/api-services/pkg/cache"
+	"github.com/samaasi/uptime-application/services/api-services/pkg/notifier/email"
+	"github.com/samaasi/uptime-application/services/api-services/pkg/otp"
+	"github.com/samaasi/uptime-application/services/api-services/pkg/security"
+	"github.com/samaasi/uptime-application/services/api-services/pkg/storage"
 
-    //"github.com/samaasi/uptime-application/services/api-services/pkg/urlsigner"
+	//"github.com/samaasi/uptime-application/services/api-services/pkg/urlsigner"
 
-    "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 func SetupRoutes(
@@ -26,29 +30,38 @@ func SetupRoutes(
 	emailService email.Service,
 ) (*gin.Engine, error) {
 
-
 	// Initialize the signer with a secret
 	// urlSigner := urlsigner.New(appConfig.App.Key,
 	// 	urlsigner.WithExpiresParam("exp"),
 	// 	urlsigner.WithSignatureParam("sig"),
 	// 	urlsigner.WithClockSkewGrace(30*time.Second),
 	// )
-    // protected.Use(URLSignatureMiddleware(urlSigner))
+	// protected.Use(URLSignatureMiddleware(urlSigner))
+
+	// Initialize JWT service for token creation/verification
+	jwtService, err := security.NewJWTService(appConfig.App.Key, appConfig.App.JWTExpiration)
+	if err != nil {
+		return nil, err
+	}
 
 	// Initialize repositories
-	// (unused) repo := repositories.NewOTPRepository(cacheService)
+	userRepo := repositories.NewUserRepository(postgresClient.DB())
+	otpRepo := repositories.NewOTPRepository(cacheService)
 
 	// Initialize services
-	// (unused) otpService := services.NewUserOTPManagerService(repo, otp.NewOTPService(otp.DefaultOTPConfig()))
+	otpService := services.NewUserOTPManagerService(otpRepo, otp.NewOTPService(otp.DefaultOTPConfig()))
 
-    // Initialize controllers
-    healthController := controllers.NewHealthController(
-        postgresClient,
-        clickhouseClient,
-        cacheService,
-        storageDriver,
-        emailService,
-    )
+	// Initialize controllers
+	healthController := controllers.NewHealthController(
+		postgresClient,
+		clickhouseClient,
+		cacheService,
+		storageDriver,
+		emailService,
+	)
+
+	authService := services.NewAuthService(userRepo, otpService, emailService, jwtService)
+	authController := controllers.NewAuthController(authService)
 
 	// --- Create Gin Router ---
 	router := gin.New()
@@ -65,15 +78,17 @@ func SetupRoutes(
 	router.GET("/readyz", healthController.GetReadiness)
 
 	// API routes
-	// api := router.Group("/api/v1")
-	// {
-	// 	// New authentication routes
-	// 	auth := api.Group("/auth")
-	// 	{
-	// 	}
+	api := router.Group("/api/v1")
+	{
+		// Authentication routes
+		auth := api.Group("/auth")
+		{
+			auth.POST("/signup", authController.SignUp)
+			auth.POST("/signin", authController.SignIn)
+		}
 
-	// 	// Protected routes group
-	// }
+		// Protected routes group (add later)
+	}
 
 	return router, nil
 }
