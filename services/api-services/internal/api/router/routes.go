@@ -50,6 +50,7 @@ func SetupRoutes(
 
 	// Initialize services
 	otpService := services.NewUserOTPManagerService(otpRepo, otp.NewOTPService(otp.DefaultOTPConfig()))
+	authService := services.NewAuthService(userRepo, otpService, emailService, jwtService)
 
 	// Initialize controllers
 	healthController := controllers.NewHealthController(
@@ -59,8 +60,6 @@ func SetupRoutes(
 		storageDriver,
 		emailService,
 	)
-
-	authService := services.NewAuthService(userRepo, otpService, emailService, jwtService)
 	authController := controllers.NewAuthController(authService)
 
 	// --- Create Gin Router ---
