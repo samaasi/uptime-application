@@ -27,6 +27,11 @@ type User struct {
 	OwnedOrganizations []Organization `json:"owned_organizations" gorm:"foreignKey:OwnerID"`
 }
 
+// EmailVerified checks if the user's email is verified.
+func (u *User) EmailVerified() bool {
+	return u.EmailVerifiedAt != nil
+}
+
 // BeforeCreate hook to hash password with Argon2id.
 func (u *User) BeforeCreate(tx *gorm.DB) error {
 	if len(u.HashedPassword) > 0 {

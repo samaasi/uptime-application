@@ -1,25 +1,20 @@
 package router
 
 import (
-	"time"
+    "time"
 
-	"github.com/gin-contrib/cors"
-	"github.com/samaasi/uptime-application/services/api-services/internal/api/controllers"
-	"github.com/samaasi/uptime-application/services/api-services/internal/api/middleware"
-	"github.com/samaasi/uptime-application/services/api-services/internal/api/repositories"
-	"github.com/samaasi/uptime-application/services/api-services/internal/api/services"
-	"github.com/samaasi/uptime-application/services/api-services/internal/config"
-	"github.com/samaasi/uptime-application/services/api-services/internal/database"
-	"github.com/samaasi/uptime-application/services/api-services/pkg/cache"
-	"github.com/samaasi/uptime-application/services/api-services/pkg/notifier/email"
-	"github.com/samaasi/uptime-application/services/api-services/pkg/otp"
-	"github.com/samaasi/uptime-application/services/api-services/pkg/storage"
+    "github.com/gin-contrib/cors"
+    "github.com/samaasi/uptime-application/services/api-services/internal/api/controllers"
+    "github.com/samaasi/uptime-application/services/api-services/internal/api/middleware"
+    "github.com/samaasi/uptime-application/services/api-services/internal/config"
+    "github.com/samaasi/uptime-application/services/api-services/internal/database"
+    "github.com/samaasi/uptime-application/services/api-services/pkg/cache"
+    "github.com/samaasi/uptime-application/services/api-services/pkg/notifier/email"
+    "github.com/samaasi/uptime-application/services/api-services/pkg/storage"
 
-	//"github.com/samaasi/uptime-application/services/api-services/pkg/security"
+    //"github.com/samaasi/uptime-application/services/api-services/pkg/urlsigner"
 
-	//"github.com/samaasi/uptime-application/services/api-services/pkg/urlsigner"
-
-	"github.com/gin-gonic/gin"
+    "github.com/gin-gonic/gin"
 )
 
 func SetupRoutes(
@@ -31,12 +26,6 @@ func SetupRoutes(
 	emailService email.Service,
 ) (*gin.Engine, error) {
 
-	// Initialize JWT
-	// Initialize JWT
-	// jwtService, err := security.NewJWTService(appConfig.App.Key, appConfig.App.JWTExpiration)
-	// if err != nil {
-	// 	return nil, err
-	// }
 
 	// Initialize the signer with a secret
 	// urlSigner := urlsigner.New(appConfig.App.Key,
@@ -44,22 +33,22 @@ func SetupRoutes(
 	// 	urlsigner.WithSignatureParam("sig"),
 	// 	urlsigner.WithClockSkewGrace(30*time.Second),
 	// )
-	// protected.Use(URLSignatureMiddleware(urlSigner))
+    // protected.Use(URLSignatureMiddleware(urlSigner))
 
 	// Initialize repositories
-	repo := repositories.NewOTPRepository(cacheService)
+	// (unused) repo := repositories.NewOTPRepository(cacheService)
 
 	// Initialize services
-	otpService := services.NewUserOTPManagerService(repo, otp.NewOTPService(otp.DefaultOTPConfig()))
+	// (unused) otpService := services.NewUserOTPManagerService(repo, otp.NewOTPService(otp.DefaultOTPConfig()))
 
-	// Initialize controllers
-	healthController := controllers.NewHealthController(
-		postgresClient,
-		clickhouseClient,
-		cacheService,
-		storageDriver,
-		emailService,
-	)
+    // Initialize controllers
+    healthController := controllers.NewHealthController(
+        postgresClient,
+        clickhouseClient,
+        cacheService,
+        storageDriver,
+        emailService,
+    )
 
 	// --- Create Gin Router ---
 	router := gin.New()
