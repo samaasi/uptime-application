@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GoORMHelperCache">
+    <option name="schemaMapping">
+      <map>
+        <entry key="AppConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ClickHouseClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/database/clickhouse.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ClickHouseClientOptions">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/database/clickhouse.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ClickHouseConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Config">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="EmailConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LocalStorageConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LoggingConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PostgresClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/database/postgres.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PostgresClientOptions">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/database/postgres.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PostgresConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RedisClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/database/redis.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RedisClientOptions">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/database/redis.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RedisConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SMTPConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="redisMetrics">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/database/redis.go" />
+            </set>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="scannedPathMapping">
+      <map>
+        <entry key="file://$PROJECT_DIR$/services/api-services/cmd/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760224859816" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760266450791" />
+              <option name="schema">
+                <list>
+                  <option value="Config" />
+                  <option value="AppConfig" />
+                  <option value="PostgresConfig" />
+                  <option value="RedisConfig" />
+                  <option value="ClickHouseConfig" />
+                  <option value="EmailConfig" />
+                  <option value="SMTPConfig" />
+                  <option value="LocalStorageConfig" />
+                  <option value="LoggingConfig" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/database/clickhouse.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760262294886" />
+              <option name="schema">
+                <list>
+                  <option value="ClickHouseClient" />
+                  <option value="ClickHouseClientOptions" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/database/postgres.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760249998139" />
+              <option name="schema">
+                <list>
+                  <option value="PostgresClient" />
+                  <option value="PostgresClientOptions" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/database/redis.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760250535510" />
+              <option name="schema">
+                <list>
+                  <option value="RedisClientOptions" />
+                  <option value="redisMetrics" />
+                  <option value="RedisClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internals/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760224768218" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internals/database/clickhouse.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760224822660" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internals/database/postgres.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760224784980" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internals/database/redis.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760224793163" />
+            </ScannedPath>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="tableStructMapping">
+      <map>
+        <entry key="app_config" value="AppConfig" />
+        <entry key="click_house_client" value="ClickHouseClient" />
+        <entry key="click_house_client_options" value="ClickHouseClientOptions" />
+        <entry key="click_house_config" value="ClickHouseConfig" />
+        <entry key="config" value="Config" />
+        <entry key="email_config" value="EmailConfig" />
+        <entry key="local_storage_config" value="LocalStorageConfig" />
+        <entry key="logging_config" value="LoggingConfig" />
+        <entry key="postgres_client" value="PostgresClient" />
+        <entry key="postgres_client_options" value="PostgresClientOptions" />
+        <entry key="postgres_config" value="PostgresConfig" />
+        <entry key="redis_client" value="RedisClient" />
+        <entry key="redis_client_options" value="RedisClientOptions" />
+        <entry key="redis_config" value="RedisConfig" />
+        <entry key="redis_metrics" value="redisMetrics" />
+        <entry key="smtp_config" value="SMTPConfig" />
+      </map>
+    </option>
+    <option name="lastTimeChecked" value="1760220932780" />
+  </component>
+</project>
