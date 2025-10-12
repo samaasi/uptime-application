@@ -10,6 +10,27 @@
             </set>
           </value>
         </entry>
+        <entry key="Argon2Params">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/security/password.security.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="AuthService">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/services/auth.service.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="BasicTemplateRenderer">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/notifier/email/provider.email.notifier.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="ClickHouseClient">
           <value>
             <set>
@@ -45,6 +66,48 @@
             </set>
           </value>
         </entry>
+        <entry key="Error">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/common/types.common.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ErrorDetails">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/utils/response.utils.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="GenericResponse">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/utils/response.utils.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="GormZapLogger">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/logger/gorm_adapter.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="HealthController">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/controllers/health.controller.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="HealthResponse">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/controllers/health.controller.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="LocalStorageConfig">
           <value>
             <set>
@@ -52,10 +115,122 @@
             </set>
           </value>
         </entry>
+        <entry key="LocalStorageDriver">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/storage/local.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LoggerConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/logger/logger.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="LoggingConfig">
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/services/api-services/internal/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Meta">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/utils/response.utils.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Model">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/model.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="NoopService">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/notifier/email/provider.email.notifier.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OTP">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/otp/interface.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OTPConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/otp/otp.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OTPService">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/otp/otp.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Organization">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/organization.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OrganizationUser">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/organization.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Pagination">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/utils/pagination.utils.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Params">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/utils/pagination.utils.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Payload">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/security/jwt.security.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Permission">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/authorization.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PermissionSeeder">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/seeder/seeder.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Policy">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/authorization.go" />
             </set>
           </value>
         </entry>
@@ -101,10 +276,171 @@
             </set>
           </value>
         </entry>
+        <entry key="ResponseBuilder">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/utils/response.utils.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Role">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/authorization.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RolePermission">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/authorization.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="SMTPConfig">
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/services/api-services/internal/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SMTPEmailProvider">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/notifier/email/smtp.email.notifier.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SQLObjectToCreate">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/database/interface.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Service">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/cache/cache.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ServiceContainer">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/cmd/main.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ServiceImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/notifier/email/provider.email.notifier.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ServiceStatus">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/controllers/health.controller.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SignInRequestDto">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/auth.dto.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SignInResponseDto">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/auth.dto.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SignUpRequestDto">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/auth.dto.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SignUpResponseDto">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/auth.dto.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Signer">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/urlsigner/urlsigner.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserOTPManagerService">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/services/otp.service.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserPermission">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/authorization.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserRequestDto">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/user.dto.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserResponseDto">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/user.dto.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserRole">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/authorization.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="contextKey">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/logger/context.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="otpRepository">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/repositories/otp.repository.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="parsedHash">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/security/password.security.go" />
             </set>
           </value>
         </entry>
@@ -115,6 +451,13 @@
             </set>
           </value>
         </entry>
+        <entry key="userRepository">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/repositories/user.repository.go" />
+            </set>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="scannedPathMapping">
@@ -122,7 +465,238 @@
         <entry key="file://$PROJECT_DIR$/services/api-services/cmd/main.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760224859816" />
+              <option name="lastModified" value="1760268096553" />
+              <option name="schema">
+                <list>
+                  <option value="ServiceContainer" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/controllers/health.controller.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760264612555" />
+              <option name="schema">
+                <list>
+                  <option value="ServiceStatus" />
+                  <option value="HealthResponse" />
+                  <option value="HealthController" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/auth.dto.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760249588972" />
+              <option name="schema">
+                <list>
+                  <option value="SignInRequestDto" />
+                  <option value="SignInResponseDto" />
+                  <option value="SignUpRequestDto" />
+                  <option value="SignUpResponseDto" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/user.dto.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760249593267" />
+              <option name="schema">
+                <list>
+                  <option value="UserRequestDto" />
+                  <option value="UserResponseDto" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/middleware/auth.middleware.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760263921757" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/middleware/authorization.middleware.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760257001765" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/middleware/logging.middleware.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760251710637" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/middleware/request_id.middleware.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760251362617" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/middleware/url_signature.middleware.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760254974535" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/models/authorization.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760267215328" />
+              <option name="schema">
+                <list>
+                  <option value="Role" />
+                  <option value="Permission" />
+                  <option value="RolePermission" />
+                  <option value="UserPermission" />
+                  <option value="UserRole" />
+                  <option value="Policy" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/models/model.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760227368101" />
+              <option name="schema">
+                <list>
+                  <option value="Model" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/models/organization.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760267879940" />
+              <option name="schema">
+                <list>
+                  <option value="Organization" />
+                  <option value="OrganizationUser" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/models/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760274550427" />
+              <option name="schema">
+                <list>
+                  <option value="User" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/repositories/authorization.repository.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760268343552" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/repositories/organization.repository.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760268292144" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/repositories/otp.repository.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760274529436" />
+              <option name="schema">
+                <list>
+                  <option value="otpRepository" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/repositories/user.repository.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760269049292" />
+              <option name="schema">
+                <list>
+                  <option value="userRepository" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/router/routes.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760274754425" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/services/auth.service.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760275459374" />
+              <option name="schema">
+                <list>
+                  <option value="AuthService" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/services/otp.service.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760275111840" />
+              <option name="schema">
+                <list>
+                  <option value="UserOTPManagerService" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/common/const.common.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760273874927" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/common/types.common.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760273851649" />
+              <option name="schema">
+                <list>
+                  <option value="Error" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/common/var.common.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760273858135" />
             </ScannedPath>
           </value>
         </entry>
@@ -159,6 +733,18 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/database/interface.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1755702916876" />
+              <option name="schema">
+                <list>
+                  <option value="SQLObjectToCreate" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/services/api-services/internal/database/postgres.go">
           <value>
             <ScannedPath>
@@ -186,31 +772,205 @@
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$PROJECT_DIR$/services/api-services/internals/config/config.go">
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/seeder/seeder.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760224768218" />
+              <option name="lastModified" value="1760261478329" />
+              <option name="schema">
+                <list>
+                  <option value="PermissionSeeder" />
+                </list>
+              </option>
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$PROJECT_DIR$/services/api-services/internals/database/clickhouse.go">
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/utils/general.utils.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760224822660" />
+              <option name="lastModified" value="1760263778342" />
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$PROJECT_DIR$/services/api-services/internals/database/postgres.go">
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/utils/pagination.utils.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760224784980" />
+              <option name="lastModified" value="1752501316349" />
+              <option name="schema">
+                <list>
+                  <option value="Pagination" />
+                  <option value="Params" />
+                </list>
+              </option>
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$PROJECT_DIR$/services/api-services/internals/database/redis.go">
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/utils/response.utils.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760224793163" />
+              <option name="lastModified" value="1760261533191" />
+              <option name="schema">
+                <list>
+                  <option value="ErrorDetails" />
+                  <option value="Meta" />
+                  <option value="GenericResponse" />
+                  <option value="ResponseBuilder" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/cache/cache.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760262223414" />
+              <option name="schema">
+                <list>
+                  <option value="Service" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/logger/context.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751243789894" />
+              <option name="schema">
+                <list>
+                  <option value="contextKey" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/logger/gorm_adapter.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760261718270" />
+              <option name="schema">
+                <list>
+                  <option value="GormZapLogger" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/logger/logger.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760228433663" />
+              <option name="schema">
+                <list>
+                  <option value="LoggerConfig" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/notifier/email/provider.email.notifier.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760258239346" />
+              <option name="schema">
+                <list>
+                  <option value="NoopService" />
+                  <option value="BasicTemplateRenderer" />
+                  <option value="ServiceImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/notifier/email/smtp.email.notifier.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760258239345" />
+              <option name="schema">
+                <list>
+                  <option value="SMTPEmailProvider" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/otp/interface.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760274358444" />
+              <option name="schema">
+                <list>
+                  <option value="OTP" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/otp/otp.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760274444999" />
+              <option name="schema">
+                <list>
+                  <option value="OTPConfig" />
+                  <option value="OTPService" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/security/jwt.security.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760263033954" />
+              <option name="schema">
+                <list>
+                  <option value="Payload" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/security/password.security.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760228328869" />
+              <option name="schema">
+                <list>
+                  <option value="Argon2Params" />
+                  <option value="parsedHash" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/storage/interface.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751035135201" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/storage/local.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760257884466" />
+              <option name="schema">
+                <list>
+                  <option value="LocalStorageDriver" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/urlsigner/urlsigner.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760255298836" />
+              <option name="schema">
+                <list>
+                  <option value="Signer" />
+                </list>
+              </option>
             </ScannedPath>
           </value>
         </entry>
@@ -219,13 +979,41 @@
     <option name="tableStructMapping">
       <map>
         <entry key="app_config" value="AppConfig" />
+        <entry key="argon2_params" value="Argon2Params" />
+        <entry key="auth_service" value="AuthService" />
+        <entry key="basic_template_renderer" value="BasicTemplateRenderer" />
         <entry key="click_house_client" value="ClickHouseClient" />
         <entry key="click_house_client_options" value="ClickHouseClientOptions" />
         <entry key="click_house_config" value="ClickHouseConfig" />
         <entry key="config" value="Config" />
+        <entry key="context_key" value="contextKey" />
         <entry key="email_config" value="EmailConfig" />
+        <entry key="error" value="Error" />
+        <entry key="error_details" value="ErrorDetails" />
+        <entry key="generic_response" value="GenericResponse" />
+        <entry key="gorm_zap_logger" value="GormZapLogger" />
+        <entry key="health_controller" value="HealthController" />
+        <entry key="health_response" value="HealthResponse" />
         <entry key="local_storage_config" value="LocalStorageConfig" />
+        <entry key="local_storage_driver" value="LocalStorageDriver" />
+        <entry key="logger_config" value="LoggerConfig" />
         <entry key="logging_config" value="LoggingConfig" />
+        <entry key="meta" value="Meta" />
+        <entry key="model" value="Model" />
+        <entry key="noop_service" value="NoopService" />
+        <entry key="organization" value="Organization" />
+        <entry key="organization_user" value="OrganizationUser" />
+        <entry key="otp" value="OTP" />
+        <entry key="otp_config" value="OTPConfig" />
+        <entry key="otp_repository" value="otpRepository" />
+        <entry key="otp_service" value="OTPService" />
+        <entry key="pagination" value="Pagination" />
+        <entry key="params" value="Params" />
+        <entry key="parsed_hash" value="parsedHash" />
+        <entry key="payload" value="Payload" />
+        <entry key="permission" value="Permission" />
+        <entry key="permission_seeder" value="PermissionSeeder" />
+        <entry key="policy" value="Policy" />
         <entry key="postgres_client" value="PostgresClient" />
         <entry key="postgres_client_options" value="PostgresClientOptions" />
         <entry key="postgres_config" value="PostgresConfig" />
@@ -233,9 +1021,30 @@
         <entry key="redis_client_options" value="RedisClientOptions" />
         <entry key="redis_config" value="RedisConfig" />
         <entry key="redis_metrics" value="redisMetrics" />
+        <entry key="response_builder" value="ResponseBuilder" />
+        <entry key="role" value="Role" />
+        <entry key="role_permission" value="RolePermission" />
+        <entry key="service" value="Service" />
+        <entry key="service_container" value="ServiceContainer" />
+        <entry key="service_impl" value="ServiceImpl" />
+        <entry key="service_status" value="ServiceStatus" />
+        <entry key="sign_in_request_dto" value="SignInRequestDto" />
+        <entry key="sign_in_response_dto" value="SignInResponseDto" />
+        <entry key="sign_up_request_dto" value="SignUpRequestDto" />
+        <entry key="sign_up_response_dto" value="SignUpResponseDto" />
+        <entry key="signer" value="Signer" />
         <entry key="smtp_config" value="SMTPConfig" />
+        <entry key="smtp_email_provider" value="SMTPEmailProvider" />
+        <entry key="sql_object_to_create" value="SQLObjectToCreate" />
+        <entry key="user" value="User" />
+        <entry key="user_otp_manager_service" value="UserOTPManagerService" />
+        <entry key="user_permission" value="UserPermission" />
+        <entry key="user_repository" value="userRepository" />
+        <entry key="user_request_dto" value="UserRequestDto" />
+        <entry key="user_response_dto" value="UserResponseDto" />
+        <entry key="user_role" value="UserRole" />
       </map>
     </option>
-    <option name="lastTimeChecked" value="1760220932780" />
+    <option name="lastTimeChecked" value="1760275609170" />
   </component>
 </project>
