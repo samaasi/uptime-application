@@ -120,3 +120,155 @@ func (s *AuthService) SignIn(ctx context.Context, req *dtos.SignInRequestDto) (*
     logger.Info("User signed in successfully", logger.String("user_id", user.ID.String()), logger.String("email", emailVal))
     return response, nil
 }
+
+// ForgotPassword initiates password reset process
+func (s *AuthService) ForgotPassword(ctx context.Context, req *dtos.ForgotPasswordRequest) error {
+	// Check if user exists
+	_, err := s.userRepository.GetByEmail(ctx, req.Email)
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			// Don't reveal if user exists or not
+			return nil
+		}
+		logger.Error("Failed to get user", logger.String("email", req.Email), logger.ErrorField(err))
+		return common.ErrInternalServer
+	}
+
+	// Generate OTP for password reset
+	otp, err := s.otpService.GenerateOTP(ctx, req.Email, common.OTPTypePasswordReset, common.UserTypeEmail)
+	if err != nil {
+		logger.Error("Failed to generate OTP", logger.String("email", req.Email), logger.ErrorField(err))
+		return common.ErrInternalServer
+	}
+
+	// Send password reset email
+	if err := s.emailService.SendEmail(ctx, req.Email, "Password Reset OTP", fmt.Sprintf("Your OTP for password reset is: %s", otp)); err != nil {
+		logger.Error("Failed to send password reset email", logger.String("email", req.Email), logger.ErrorField(err))
+		return common.ErrInternalServer
+	}
+
+	logger.Info("Password reset initiated", logger.String("email", req.Email))
+	return nil
+}
+
+// ResetPassword completes password reset process
+func (s *AuthService) ResetPassword(ctx context.Context, req *dtos.ResetPasswordRequest) error {
+	// Verify OTP
+	verified, err := s.otpService.VerifyOTP(ctx, req.Email, common.OTPTypePasswordReset, common.UserTypeEmail, req.OTP)
+	if err != nil || !verified {
+		logger.Error("Invalid OTP for password reset", logger.String("email", req.Email), logger.ErrorField(err))
+		return common.ErrInvalidOTP
+	}
+
+	// Get user
+	user, err := s.userRepository.GetByEmail(ctx, req.Email)
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return common.ErrUserNotFound
+		}
+		logger.Error("Failed to get user", logger.String("email", req.Email), logger.ErrorField(err))
+		return common.ErrInternalServer
+	}
+
+	// Hash new password
+	hashedPassword, err := security.HashPassword(req.NewPassword, nil)
+	if err != nil {
+		logger.Error("Failed to hash password", logger.String("email", req.Email), logger.ErrorField(err))
+		return common.ErrInternalServer
+	}
+
+	// Update user password
+	user.PasswordHash = hashedPassword
+	user.UpdatedAt = time.Now()
+
+	if err := s.userRepository.Update(ctx, user); err != nil {
+		logger.Error("Failed to update user password", logger.String("email", req.Email), logger.ErrorField(err))
+		return common.ErrInternalServer
+	}
+
+	// OTP is automatically deleted by the VerifyOTP method
+	// No need to manually delete it
+
+	logger.Info("Password reset successfully", logger.String("email", req.Email))
+	return nil
+}
+
+// VerifyEmail handles email verification
+func (s *AuthService) VerifyEmail(ctx context.Context, req *dtos.VerifyEmailRequest) error {
+	// Verify OTP
+	verified, err := s.otpService.VerifyOTP(ctx, req.Email, common.OTPTypeEmailVerification, common.UserTypeEmail, req.OTP)
+	if err != nil || !verified {
+		logger.Error("Invalid OTP for email verification", logger.String("email", req.Email), logger.ErrorField(err))
+		return common.ErrInvalidOTP
+	}
+
+	// Get user
+	user, err := s.userRepository.GetByEmail(ctx, req.Email)
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return common.ErrUserNotFound
+		}
+		logger.Error("Failed to get user", logger.String("email", req.Email), logger.ErrorField(err))
+		return common.ErrInternalServer
+	}
+
+	// Update email verification status
+	now := time.Now()
+	user.EmailVerified = true
+	user.EmailVerifiedAt = &now
+	user.UpdatedAt = now
+
+	if err := s.userRepository.Update(ctx, user); err != nil {
+		logger.Error("Failed to update user email verification", logger.String("email", req.Email), logger.ErrorField(err))
+		return common.ErrInternalServer
+	}
+
+	// OTP is automatically deleted by the VerifyOTP method
+	// No need to manually delete it
+
+	logger.Info("Email verified successfully", logger.String("email", req.Email))
+	return nil
+}
+
+// ResendOTP resends OTP for various operations
+func (s *AuthService) ResendOTP(ctx context.Context, otpType common.OTPType, email string) error {
+	// Check if user exists
+	_, err := s.userRepository.GetByEmail(ctx, email)
+	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return common.ErrUserNotFound
+		}
+		logger.Error("Failed to get user", logger.String("email", email), logger.ErrorField(err))
+		return common.ErrInternalServer
+	}
+
+	// Generate new OTP
+	otp, err := s.otpService.GenerateOTP(ctx, email, otpType, common.UserTypeEmail)
+	if err != nil {
+		logger.Error("Failed to generate OTP", logger.String("email", email), logger.String("type", string(otpType)), logger.ErrorField(err))
+		return common.ErrInternalServer
+	}
+
+	// Determine email subject and message based on OTP type
+	var subject, message string
+	switch otpType {
+	case common.OTPTypeEmailVerification:
+		subject = "Email Verification"
+		message = fmt.Sprintf("Your verification code is: %s", otp)
+	case common.OTPTypePasswordReset:
+		subject = "Password Reset"
+		message = fmt.Sprintf("Your password reset code is: %s", otp)
+	default:
+		subject = "OTP Code"
+		message = fmt.Sprintf("Your OTP code is: %s", otp)
+	}
+
+	// Send email
+	if err := s.emailService.SendEmail(ctx, email, subject, message); err != nil {
+		logger.Error("Failed to send OTP email", logger.String("email", email), logger.String("type", string(otpType)), logger.ErrorField(err))
+		return common.ErrInternalServer
+	}
+
+	logger.Info("OTP resent successfully", logger.String("email", email), logger.String("type", string(otpType)))
+	return nil
+}
