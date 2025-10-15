@@ -97,7 +97,7 @@ export const ProjectEnvironment = () => {
   };
 
   return (
-    <div className="flex items-center justify-between bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-1">
+    <div className="flex items-center justify-between bg-gray-100 dark:bg-gray-800 shadow-md rounded-sm p-1 -m-px">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -164,7 +164,7 @@ export const ProjectEnvironment = () => {
 };
 
 const CustomSelectTrigger = ({ children }: { children: React.ReactNode }) => (
-  <SelectTrigger className="focus-visible:bg-accent h-8 px-1.5 focus-visible:ring-0 focus-visible:ring-offset-0 border-none shadow-none bg-transparent hover:bg-accent [&>svg:not(.lucide-chevrons-up-down)]:hidden">
+  <SelectTrigger className="focus-visible:bg-accent h-8 px-1.5 focus-visible:ring-0 focus-visible:ring-offset-0 border-none shadow-none hover:shadow-sm bg-transparent hover:bg-accent [&>svg:not(.lucide-chevrons-up-down)]:hidden">
     {children}
     <ChevronsUpDown size={14} className="text-muted-foreground/80 ml-1 lucide-chevrons-up-down" />
   </SelectTrigger>

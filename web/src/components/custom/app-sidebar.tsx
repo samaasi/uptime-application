@@ -1,18 +1,25 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import {
     Sidebar,
     SidebarRail,
     SidebarMenu,
+    SidebarGroup,
     SidebarHeader,
     SidebarFooter,
     SidebarContent,
     SidebarMenuItem,
     SidebarMenuButton,
+    SidebarGroupContent,
 } from "@/components/ui/sidebar";
-import { GalleryVerticalEnd } from "lucide-react"
+import { NavMain } from "@/components/custom/nav-main";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { NavProjects, type ProjectItem } from "@/components/custom/nav-project";
 import { OrganizationSwitcher } from "@/components/custom/organization-switcher";
+import { Frame, Settings, GalleryVerticalEnd, SquareTerminal, Map, Bot, Settings2, BookOpen, PieChart } from "lucide-react";
+import Link from "next/link";
 
 const data = {
     organizations: [
@@ -27,138 +34,88 @@ const data = {
         plan: "Pro",
       },
     ],
-  navMain: [
+    navMain: [
     {
-      title: "Getting Started",
+      title: "Playground",
       url: "#",
+      icon: SquareTerminal,
+      isActive: true,
       items: [
         {
-          title: "Installation",
+          title: "History",
           url: "#",
         },
         {
-          title: "Project Structure",
+          title: "Starred",
+          url: "#",
+        },
+        {
+          title: "Settings",
           url: "#",
         },
       ],
     },
     {
-      title: "Building Your Application",
+      title: "Models",
       url: "#",
+      icon: Bot,
       items: [
         {
-          title: "Routing",
+          title: "Genesis",
           url: "#",
         },
         {
-          title: "Data Fetching",
-          url: "#",
-          isActive: true,
-        },
-        {
-          title: "Rendering",
+          title: "Explorer",
           url: "#",
         },
         {
-          title: "Caching",
-          url: "#",
-        },
-        {
-          title: "Styling",
-          url: "#",
-        },
-        {
-          title: "Optimizing",
-          url: "#",
-        },
-        {
-          title: "Configuring",
-          url: "#",
-        },
-        {
-          title: "Testing",
-          url: "#",
-        },
-        {
-          title: "Authentication",
-          url: "#",
-        },
-        {
-          title: "Deploying",
-          url: "#",
-        },
-        {
-          title: "Upgrading",
-          url: "#",
-        },
-        {
-          title: "Examples",
+          title: "Quantum",
           url: "#",
         },
       ],
     },
     {
-      title: "API Reference",
+      title: "Documentation",
       url: "#",
+      icon: BookOpen,
       items: [
         {
-          title: "Components",
+          title: "Introduction",
           url: "#",
         },
         {
-          title: "File Conventions",
+          title: "Get Started",
           url: "#",
         },
         {
-          title: "Functions",
+          title: "Tutorials",
           url: "#",
         },
         {
-          title: "next.config.js Options",
-          url: "#",
-        },
-        {
-          title: "CLI",
-          url: "#",
-        },
-        {
-          title: "Edge Runtime",
+          title: "Changelog",
           url: "#",
         },
       ],
     },
     {
-      title: "Architecture",
+      title: "Settings",
       url: "#",
+      icon: Settings2,
       items: [
         {
-          title: "Accessibility",
+          title: "General",
           url: "#",
         },
         {
-          title: "Fast Refresh",
+          title: "Team",
           url: "#",
         },
         {
-          title: "Next.js Compiler",
+          title: "Billing",
           url: "#",
         },
         {
-          title: "Supported Browsers",
-          url: "#",
-        },
-        {
-          title: "Turbopack",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Community",
-      url: "#",
-      items: [
-        {
-          title: "Contribution Guide",
+          title: "Limits",
           url: "#",
         },
       ],
@@ -166,7 +123,50 @@ const data = {
   ],
 }
 
+const projects: ProjectItem[] = [
+    {
+      id: 'proj-design-eng',
+      name: "Design Engineering",
+      url: "#",
+      icon: Frame,
+    },
+    {
+      id: 'proj-sales-mktg',
+      name: "Sales & Marketing",
+      url: "#",
+      icon: PieChart,
+    },
+    {
+      id: 'proj-travel-plan',
+      name: "Travel",
+      url: "#",
+      icon: Map,
+    },
+  ];
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
+  const handleViewProject = (project: ProjectItem) => {
+    alert(`Viewing project: ${project.name} (ID: ${project.id})`)
+    // Example: router.push(`/projects/${project.id}`);
+  }
+
+  const handleShareProject = (project: ProjectItem) => {
+    alert(`Sharing project: ${project.name}`)
+    // Example: copyToClipboard(`${window.location.origin}/projects/${project.id}`);
+  }
+
+  const handleDeleteProject = (project: ProjectItem) => {
+    if (confirm(`Are you sure you want to delete "${project.name}"?`)) {
+      console.log("Deleting project:", project)
+      // Example: call an API to delete the project
+    }
+  }
+
+  const handleAddNewProject = () => {
+    alert("Opening the 'Add New Project' modal...")
+    // Example: setModalOpen(true);
+  }
   return (
     <Sidebar variant="floating" {...props}>
       <SidebarHeader>
@@ -179,11 +179,50 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <div>Add Content...</div>
+        <NavMain label="Platform" items={data.navMain} />
+        <NavProjects
+          projects={projects}
+          onViewProject={handleViewProject}
+          onShareProject={handleShareProject}
+          onDeleteProject={handleDeleteProject}
+          onAddNewProject={handleAddNewProject}
+        />
       </SidebarContent>
       <SidebarRail />
       <SidebarFooter>
-        <div>Add Footer</div>
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild className={"hover:text-accent-foreground hover:bg-gray-200"}>
+                  <Link
+                    href={"#account"}
+                    aria-current={"page"}
+                    aria-label={'account'}
+                  >
+                    <Avatar className="rounded-sm h-6 w-6">
+                      <AvatarImage src="https://github.com/maxleiter.png" alt="@maxleiter" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <span className="truncate">Account</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild className={"hover:text-accent-foreground hover:bg-gray-200"}>
+                  <Link
+                    href={"#settings"}
+                    aria-current={"page"}
+                    aria-label={'settings'}
+                  >
+                    <Settings className="h-6 w-6" />
+                    <span className="truncate ml-1.5">Settings</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarFooter>
     </Sidebar>
   )
