@@ -1,138 +1,171 @@
 'use client';
 
-import * as React from "react";
-import Image from "next/image";
+import * as React from 'react';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
 import {
-  Select,
-  SelectItem,
-  SelectValue,
-  SelectContent,
-  SelectTrigger,
+    Select,
+    SelectItem,
+    SelectValue,
+    SelectContent,
+    SelectTrigger,
 } from '@/components/ui/select';
-import { 
+import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbList,
     BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { ChevronsUpDown } from "lucide-react";
-import { StatusIndicator } from "./status-indicator";
+} from '@/components/ui/breadcrumb';
+import { ChevronsUpDown } from 'lucide-react';
 
-interface ProjectProps {
-    value: string;
-    label: string;
-    image: string;
+type EnvironmentStatus = 'development' | 'staging' | 'production';
+
+interface Environment {
+  value: string;
+  label: string;
+  status: EnvironmentStatus;
 }
 
-const projects: ProjectProps[] = [
-    { value: '1', label: 'Main project', image: 'https://placehold.co/20x20' },
-    { value: '2', label: 'Origin project', image: 'https://placehold.co/20x20' },
-    { value: '3', label: 'Legacy project', image: 'https://placehold.co/20x20' },
+interface Project {
+  value: string;
+  label: string;
+  image: string;
+  environments: Environment[];
+}
+
+const Projects: Project[] = [
+  {
+    value: 'proj_1',
+    label: 'Main Project',
+    image: 'https://placehold.co/20x20/7c3aed/ffffff',
+    environments: [
+      { value: 'proj_1-dev', label: 'Development', status: 'development' },
+      { value: 'proj_1-prod', label: 'Production', status: 'production' },
+    ],
+  },
+  {
+    value: 'proj_2',
+    label: 'Origin Project',
+    image: 'https://placehold.co/20x20/ea580c/ffffff',
+    environments: [
+      { value: 'proj_2-staging', label: 'Staging', status: 'staging' },
+      { value: 'proj_2-prod', label: 'Production', status: 'production' },
+    ],
+  },
 ];
 
-const environments = [
-    {value: '1', label: 'Development', status: 'development'},
-    {value: '2', label: 'Production', status: 'production'},
-    {value: '3', label: 'Staging', status: 'staging'},
-]
+const StatusIndicator = React.memo(({ status }: { status: EnvironmentStatus }) => {
+  const statusColorMap: Record<EnvironmentStatus, string> = {
+    development: 'bg-amber-700',
+    staging: 'bg-gray-500',
+    production: 'bg-green-500',
+  };
+
+  return (
+    <div
+      className={cn('w-2 h-2 rounded-full', statusColorMap[status] || 'bg-gray-400')}
+      role="presentation"
+      title={`Status: ${status}`}
+    />
+  );
+});
+StatusIndicator.displayName = 'StatusIndicator';
 
 export const ProjectEnvironment = () => {
-    const defaultProject: string = "1";
-    const defaultEnvironment: string = "2";
-    const [project, setProject] = React.useState('');
-    const [environment, setEnvironment] = React.useState('');
+  const [selectedProjectValue, setSelectedProjectValue] = React.useState(Projects[0].value);
+  
+  const selectedProject = React.useMemo(
+    () => Projects.find((p) => p.value === selectedProjectValue) || Projects[0],
+    [selectedProjectValue]
+  );
+  
+  const [selectedEnvValue, setSelectedEnvValue] = React.useState(selectedProject.environments[0].value);
 
-    const handleProjectChange = (value: string) => {
-        setProject(value);
-    }
+  const selectedEnvironment = React.useMemo(
+    () =>
+      selectedProject.environments.find((e) => e.value === selectedEnvValue) ||
+      selectedProject.environments[0],
+    [selectedEnvValue, selectedProject.environments]
+  );
 
-    const handleEnvironmentChange = (value: string) => {
-        setEnvironment(value);
+  const handleProjectChange = (newProjectValue: string) => {
+    const newProject = Projects.find((p) => p.value === newProjectValue);
+    if (newProject) {
+      setSelectedProjectValue(newProjectValue);
+      setSelectedEnvValue(newProject.environments[0]?.value || '');
     }
-    
+  };
+
   return (
-    <div className="flex items-center justify-between bg-gray-100 shadow-md rounded-md">
-        <Breadcrumb>
-            <BreadcrumbList>
-                <BreadcrumbItem>
-                  <Select 
-                    defaultValue={defaultProject}
-                    onValueChange={handleProjectChange}
-                  >
-                    <SelectTrigger className="focus-visible:bg-accent text-foreground h-8 px-1.5 focus-visible:ring-0 border-none shadow-none bg-transparent hover:bg-accent [&>svg:not(.lucide-chevrons-up-down)]:hidden">
-                      <SelectValue placeholder="Select project">
-                        {(project || defaultProject) && (
-                          <div className="flex items-center gap-2">
-                            <Image 
-                                width={16}
-                                height={16}
-                                className="w-4 h-4 rounded-sm object-cover"
-                                src={projects.find(p => p.value === (project || defaultProject))?.image || 'https://placehold.co/20x20'}
-                                alt={"image"}
-                            />
-                            <span>{projects.find(p => p.value === (project || defaultProject))?.label}</span>
-                          </div>
-                        )}
-                      </SelectValue>
-                      <ChevronsUpDown
-                        size={14}
-                        className="text-muted-foreground/80 ml-1 lucide-chevrons-up-down"
+    <div className="flex items-center justify-between bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-1">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <Select defaultValue={selectedProjectValue} onValueChange={handleProjectChange}>
+              <CustomSelectTrigger>
+                <SelectValue>
+                  <div className="flex items-center gap-2">
+                    <Image
+                      width={16}
+                      height={16}
+                      className="rounded-sm object-cover"
+                      src={selectedProject.image}
+                      alt={`${selectedProject.label} logo`}
+                    />
+                    <span>{selectedProject.label}</span>
+                  </div>
+                </SelectValue>
+              </CustomSelectTrigger>
+              <SelectContent>
+                {Projects.map((project) => (
+                  <SelectItem key={project.value} value={project.value}>
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src={project.image}
+                        alt={`${project.label} logo`}
+                        className="w-4 h-4 rounded-sm object-cover"
+                        width={16}
+                        height={16}
                       />
-                    </SelectTrigger>
-                    <SelectContent className="[&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2">
-                      {projects.map((project) => (
-                        <SelectItem key={project.value} value={project.value}>
-                          <div className="flex items-center gap-2">
-                            <Image
-                              src={project.image} 
-                              alt={project.label} 
-                              className="w-4 h-4 rounded-sm object-cover"
-                              width={16}
-                              height={16}
-                            />
-                            <span>{project.label}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator> / </BreadcrumbSeparator>
-                <BreadcrumbItem>
-                  <Select 
-                    defaultValue={defaultEnvironment}
-                    onValueChange={handleEnvironmentChange}
-                  >
-                    <SelectTrigger className="focus-visible:bg-accent text-foreground h-8 px-1.5 focus-visible:ring-0 border-none shadow-none bg-transparent hover:bg-accent [&>svg:not(.lucide-chevrons-up-down)]:hidden">
-                      <SelectValue placeholder="Select environment">
-                        {(environment || defaultEnvironment) && (
-                          <div className="flex items-center gap-2">
-                            <StatusIndicator 
-                              status={environments.find(e => e.value === (environment || defaultEnvironment))?.status || 'offline'} 
-                            />
-                            <span>{environments.find(e => e.value === (environment || defaultEnvironment))?.label}</span>
-                          </div>
-                        )}
-                      </SelectValue>
-                      <ChevronsUpDown
-                        size={14}
-                        className="text-muted-foreground/80 ml-1 lucide-chevrons-up-down"
-                      />
-                    </SelectTrigger>
-                    <SelectContent className="[&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2">
-                      {environments.map((environment) => (
-                        <SelectItem key={environment.value} value={environment.value}>
-                          <div className="flex items-center gap-2">
-                            <StatusIndicator status={environment.status} />
-                            <span>{environment.label}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </BreadcrumbItem>
-            </BreadcrumbList>
-        </Breadcrumb>
+                      <span>{project.label}</span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator> / </BreadcrumbSeparator>
+          <BreadcrumbItem>
+            <Select defaultValue={selectedEnvValue} onValueChange={setSelectedEnvValue}>
+              <CustomSelectTrigger>
+                <SelectValue>
+                  <div className="flex items-center gap-2">
+                    <StatusIndicator status={selectedEnvironment.status} />
+                    <span>{selectedEnvironment.label}</span>
+                  </div>
+                </SelectValue>
+              </CustomSelectTrigger>
+              <SelectContent>
+                {selectedProject.environments.map((env) => (
+                  <SelectItem key={env.value} value={env.value}>
+                    <div className="flex items-center gap-2">
+                      <StatusIndicator status={env.status} />
+                      <span>{env.label}</span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
     </div>
   );
-}
+};
+
+const CustomSelectTrigger = ({ children }: { children: React.ReactNode }) => (
+  <SelectTrigger className="focus-visible:bg-accent h-8 px-1.5 focus-visible:ring-0 focus-visible:ring-offset-0 border-none shadow-none bg-transparent hover:bg-accent [&>svg:not(.lucide-chevrons-up-down)]:hidden">
+    {children}
+    <ChevronsUpDown size={14} className="text-muted-foreground/80 ml-1 lucide-chevrons-up-down" />
+  </SelectTrigger>
+);
