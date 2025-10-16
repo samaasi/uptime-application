@@ -1,41 +1,41 @@
 package services
 
 import (
-    "context"
-    "fmt"
-    "time"
+	"context"
+	"fmt"
+	"time"
 
-    "github.com/samaasi/uptime-application/services/api-services/internal/api/models"
-    "github.com/samaasi/uptime-application/services/api-services/internal/api/repositories"
-    "github.com/samaasi/uptime-application/services/api-services/internal/common"
-    "github.com/samaasi/uptime-application/services/api-services/pkg/logger"
-    "github.com/samaasi/uptime-application/services/api-services/pkg/notifier/email"
-    "github.com/samaasi/uptime-application/services/api-services/pkg/security"
+	"github.com/samaasi/uptime-application/services/api-services/internal/api/models"
+	"github.com/samaasi/uptime-application/services/api-services/internal/api/repositories"
+	"github.com/samaasi/uptime-application/services/api-services/internal/common"
+	"github.com/samaasi/uptime-application/services/api-services/pkg/logger"
+	"github.com/samaasi/uptime-application/services/api-services/pkg/notifier/email"
+	"github.com/samaasi/uptime-application/services/api-services/pkg/security"
 
-    "github.com/samaasi/uptime-application/services/api-services/internal/api/dtos"
-    "gorm.io/gorm"
+	"github.com/samaasi/uptime-application/services/api-services/internal/api/dtos"
+	"gorm.io/gorm"
 )
 
 // AuthService handles authentication business logic
 type AuthService struct {
-    userRepository repositories.UserRepository
-    otpService     *UserOTPManagerService
-    emailService   email.Service
-    jwtService     *security.JWTService
+	userRepository repositories.UserRepository
+	otpService     *UserOTPManagerService
+	emailService   email.Service
+	jwtService     *security.JWTService
 }
 
 func NewAuthService(
-    userRepository repositories.UserRepository,
-    otpService *UserOTPManagerService,
-    emailService email.Service,
-    jwtService *security.JWTService,
+	userRepository repositories.UserRepository,
+	otpService *UserOTPManagerService,
+	emailService email.Service,
+	jwtService *security.JWTService,
 ) *AuthService {
-    return &AuthService{
-        userRepository: userRepository,
-        otpService:     otpService,
-        emailService:   emailService,
-        jwtService:     jwtService,
-    }
+	return &AuthService{
+		userRepository: userRepository,
+		otpService:     otpService,
+		emailService:   emailService,
+		jwtService:     jwtService,
+	}
 }
 
 // SignUpByEmail handles user registration with email verification
@@ -97,28 +97,28 @@ func (s *AuthService) SignIn(ctx context.Context, req *dtos.SignInRequestDto) (*
 		return nil, common.ErrEmailNotVerified
 	}
 
-    // Generate JWT access token
-    payload := security.NewPayload(user.ID, time.Hour*24)
+	// Generate JWT access token
+	payload := security.NewPayload(user.ID, time.Hour*24)
 
-    accessToken, err := s.jwtService.CreateToken(payload)
-    if err != nil {
-        logger.Error("Failed to sign JWT token", logger.String("user_id", user.ID.String()), logger.ErrorField(err))
-        return nil, common.ErrInternalServer
-    }
+	accessToken, err := s.jwtService.CreateToken(payload)
+	if err != nil {
+		logger.Error("Failed to sign JWT token", logger.String("user_id", user.ID.String()), logger.ErrorField(err))
+		return nil, common.ErrInternalServer
+	}
 
-    response := &dtos.SignInResponseDto{
-        Token:     accessToken,
-        UserID:    user.ID,
-        ExpiresAt: payload.ExpiresAt.Time,
-    }
+	response := &dtos.SignInResponseDto{
+		Token:     accessToken,
+		UserID:    user.ID,
+		ExpiresAt: payload.ExpiresAt.Time,
+	}
 
-    // Safe email logging
-    emailVal := ""
-    if user.Email != nil {
-        emailVal = *user.Email
-    }
-    logger.Info("User signed in successfully", logger.String("user_id", user.ID.String()), logger.String("email", emailVal))
-    return response, nil
+	// Safe email logging
+	emailVal := ""
+	if user.Email != nil {
+		emailVal = *user.Email
+	}
+	logger.Info("User signed in successfully", logger.String("user_id", user.ID.String()), logger.String("email", emailVal))
+	return response, nil
 }
 
 // ForgotPassword initiates password reset process
@@ -135,7 +135,7 @@ func (s *AuthService) ForgotPassword(ctx context.Context, req *dtos.ForgotPasswo
 	}
 
 	// Generate OTP for password reset
-	otp, err := s.otpService.GenerateOTP(ctx, req.Email, common.OTPTypePasswordReset, common.UserTypeEmail)
+	otp, err := s.otpService.GenerateAndSaveOTP(ctx, common.OTPTypePasswordReset, req.Email)
 	if err != nil {
 		logger.Error("Failed to generate OTP", logger.String("email", req.Email), logger.ErrorField(err))
 		return common.ErrInternalServer
@@ -154,7 +154,7 @@ func (s *AuthService) ForgotPassword(ctx context.Context, req *dtos.ForgotPasswo
 // ResetPassword completes password reset process
 func (s *AuthService) ResetPassword(ctx context.Context, req *dtos.ResetPasswordRequest) error {
 	// Verify OTP
-	verified, err := s.otpService.VerifyOTP(ctx, req.Email, common.OTPTypePasswordReset, common.UserTypeEmail, req.OTP)
+	verified, err := s.otpService.VerifyOTP(ctx, common.OTPTypePasswordReset, req.Email, req.OTP)
 	if err != nil || !verified {
 		logger.Error("Invalid OTP for password reset", logger.String("email", req.Email), logger.ErrorField(err))
 		return common.ErrInvalidOTP
@@ -178,7 +178,7 @@ func (s *AuthService) ResetPassword(ctx context.Context, req *dtos.ResetPassword
 	}
 
 	// Update user password
-	user.PasswordHash = hashedPassword
+	user.HashedPassword = hashedPassword
 	user.UpdatedAt = time.Now()
 
 	if err := s.userRepository.Update(ctx, user); err != nil {
@@ -196,7 +196,7 @@ func (s *AuthService) ResetPassword(ctx context.Context, req *dtos.ResetPassword
 // VerifyEmail handles email verification
 func (s *AuthService) VerifyEmail(ctx context.Context, req *dtos.VerifyEmailRequest) error {
 	// Verify OTP
-	verified, err := s.otpService.VerifyOTP(ctx, req.Email, common.OTPTypeEmailVerification, common.UserTypeEmail, req.OTP)
+	verified, err := s.otpService.VerifyOTP(ctx, common.OTPTypeEmailVerification, req.Email, req.OTP)
 	if err != nil || !verified {
 		logger.Error("Invalid OTP for email verification", logger.String("email", req.Email), logger.ErrorField(err))
 		return common.ErrInvalidOTP
@@ -214,7 +214,6 @@ func (s *AuthService) VerifyEmail(ctx context.Context, req *dtos.VerifyEmailRequ
 
 	// Update email verification status
 	now := time.Now()
-	user.EmailVerified = true
 	user.EmailVerifiedAt = &now
 	user.UpdatedAt = now
 
@@ -243,7 +242,7 @@ func (s *AuthService) ResendOTP(ctx context.Context, otpType common.OTPType, ema
 	}
 
 	// Generate new OTP
-	otp, err := s.otpService.GenerateOTP(ctx, email, otpType, common.UserTypeEmail)
+	otp, err := s.otpService.GenerateAndSaveOTP(ctx, otpType, email)
 	if err != nil {
 		logger.Error("Failed to generate OTP", logger.String("email", email), logger.String("type", string(otpType)), logger.ErrorField(err))
 		return common.ErrInternalServer

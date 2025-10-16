@@ -66,7 +66,6 @@ func (atc ApplicationTypeConfig) ToModel() models.ApplicationType {
 // LoadSeedConfig loads seed configuration from the specified path
 // If the file doesn't exist, it returns embedded default configuration
 func LoadSeedConfig(configPath string) (*SeedConfig, error) {
-	// Check if environment variable is set for config path
 	if envPath := os.Getenv("SEED_CONFIG_PATH"); envPath != "" {
 		configPath = envPath
 	}
@@ -78,7 +77,6 @@ func LoadSeedConfig(configPath string) (*SeedConfig, error) {
 
 	// Check if file exists
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
-		// Return embedded default configuration
 		return getDefaultSeedConfig()
 	}
 
@@ -98,7 +96,6 @@ func LoadSeedConfig(configPath string) (*SeedConfig, error) {
 
 // SaveSeedConfig saves the current configuration to a file
 func SaveSeedConfig(config *SeedConfig, configPath string) error {
-	// Create directory if it doesn't exist
 	dir := filepath.Dir(configPath)
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		return fmt.Errorf("failed to create config directory: %w", err)

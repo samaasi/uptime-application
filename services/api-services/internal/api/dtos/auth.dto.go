@@ -25,3 +25,18 @@ type SignUpRequestDto struct {
 }
 
 type SignUpResponseDto struct{}
+
+type ForgotPasswordRequest struct {
+    Email string `json:"email" validate:"required,email"`
+}
+
+type ResetPasswordRequest struct {
+    Email       string `json:"email" validate:"required,email"`
+    OTP         string `json:"otp" validate:"required"`
+    NewPassword string `json:"new_password" validate:"required,min=8"`
+}
+
+type VerifyEmailRequest struct {
+    Email string `json:"email" validate:"required,email"`
+    OTP   string `json:"otp" validate:"required"`
+}
