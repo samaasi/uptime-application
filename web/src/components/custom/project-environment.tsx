@@ -17,6 +17,7 @@ import {
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { ChevronsUpDown } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 type EnvironmentStatus = 'development' | 'staging' | 'production';
 
@@ -105,13 +106,13 @@ export const ProjectEnvironment = () => {
               <CustomSelectTrigger>
                 <SelectValue>
                   <div className="flex items-center gap-2">
-                    <Image
-                      width={16}
-                      height={16}
-                      className="rounded-sm object-cover"
-                      src={selectedProject.image}
-                      alt={`${selectedProject.label} logo`}
-                    />
+                    <Avatar className="rounded-sm h-6 w-6 object-cover">
+                      <AvatarImage 
+                        src="https://github.com/maxleiter.png" 
+                        alt={`${selectedProject.label} logo`} 
+                      />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
                     <span>{selectedProject.label}</span>
                   </div>
                 </SelectValue>
@@ -120,13 +121,13 @@ export const ProjectEnvironment = () => {
                 {Projects.map((project) => (
                   <SelectItem key={project.value} value={project.value}>
                     <div className="flex items-center gap-2">
-                      <Image
-                        src={project.image}
-                        alt={`${project.label} logo`}
-                        className="w-4 h-4 rounded-sm object-cover"
-                        width={16}
-                        height={16}
-                      />
+                      <Avatar className="rounded-sm h-6 w-6 object-cover">
+                        <AvatarImage 
+                            src="https://github.com/maxleiter.png" 
+                            alt={`${selectedProject.label} logo`} 
+                        />
+                        <AvatarFallback>CN</AvatarFallback>
+                       </Avatar>
                       <span>{project.label}</span>
                     </div>
                   </SelectItem>

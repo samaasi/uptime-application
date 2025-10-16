@@ -18,7 +18,7 @@ import { NavMain } from "@/components/custom/nav-main";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { NavProjects, type ProjectItem } from "@/components/custom/nav-project";
 import { OrganizationSwitcher } from "@/components/custom/organization-switcher";
-import { Frame, Settings, GalleryVerticalEnd, SquareTerminal, Map, Bot, Settings2, BookOpen, PieChart } from "lucide-react";
+import { Frame, ActivitySquareIcon, Settings, GalleryVerticalEnd, SquareTerminal, Map, Bot, Settings2, BookOpen, PieChart } from "lucide-react";
 import Link from "next/link";
 
 const data = {
@@ -36,10 +36,15 @@ const data = {
     ],
     navMain: [
     {
+      title: "Dashboard",
+      url: "#",
+      icon: ActivitySquareIcon,
+      isActive: true
+    },
+    {
       title: "Playground",
       url: "#",
       icon: SquareTerminal,
-      isActive: true,
       items: [
         {
           title: "History",
@@ -159,7 +164,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const handleDeleteProject = (project: ProjectItem) => {
     if (confirm(`Are you sure you want to delete "${project.name}"?`)) {
       console.log("Deleting project:", project)
-      // Example: call an API to delete the project
     }
   }
 

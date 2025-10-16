@@ -11,12 +11,13 @@ import (
 // An organization can have multiple users, and policies.
 type Organization struct {
 	Model
-	OwnerID   uuid.UUID      `json:"owner_id" gorm:"type:uuid;index"`
-	Owner     *User          `json:"owner" gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
-	Name      string         `json:"name" gorm:"type:varchar(100);not null"`
-	Users     []User         `json:"users" gorm:"many2many:organization_users;"`
-	Policies  []Policy       `json:"policies" gorm:"foreignKey:OrganizationID"`
-	DeletedAt gorm.DeletedAt `json:"deleted_at" gorm:"index"`
+	OwnerID      uuid.UUID      `json:"owner_id" gorm:"type:uuid;index"`
+	Owner        *User          `json:"owner" gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	Name         string         `json:"name" gorm:"type:varchar(100);not null"`
+	Users        []User         `json:"users" gorm:"many2many:organization_users;"`
+	Policies     []Policy       `json:"policies" gorm:"foreignKey:OrganizationID"`
+	Applications []Application  `json:"applications" gorm:"foreignKey:OrganizationID"`
+	DeletedAt    gorm.DeletedAt `json:"deleted_at" gorm:"index"`
 }
 
 // OrganizationUser represents the pivot table for Organization-User relationship.
