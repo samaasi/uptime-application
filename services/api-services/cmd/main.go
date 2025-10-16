@@ -136,8 +136,12 @@ func initializeServices(appConfig *config.Config) (*ServiceContainer, error) {
 		postgresOpts := database.DefaultPostgresClientOptions()
 		postgresOpts.AutoMigrateModels = []interface{}{
 			&models.User{},
+			&models.OrganizationType{},
 			&models.Organization{},
 			&models.OrganizationUser{},
+			&models.ApplicationType{},
+			&models.Application{},
+			&models.Environment{},
 			// Authorizaton models
 			&models.Role{},
 			&models.Permission{},
