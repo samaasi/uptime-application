@@ -5,7 +5,6 @@ WORKDIR /app
 
 # Copy go mod files
 COPY services/api-services/go.mod services/api-services/go.sum ./services/api-services/
-COPY shared/ ./shared/
 
 # Download dependencies
 WORKDIR /app/services/api-services
@@ -25,11 +24,11 @@ WORKDIR /app
 
 # Copy the binary from builder stage
 COPY --from=builder /app/build/api-service .
-COPY --from=builder /app/shared ./shared
 
-# Create non-root user
 RUN addgroup -g 1001 -S appgroup && \
-    adduser -u 1001 -S appuser -G appgroup
+    adduser -u 1001 -S appuser -G appgroup && \
+    touch /app/.restart-proc && \
+    chown appuser:appgroup /app/.restart-proc
 
 USER appuser
 

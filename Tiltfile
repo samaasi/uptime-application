@@ -6,32 +6,30 @@ load('ext://restart_process', 'docker_build_with_restart')
 k8s_yaml('./infra/development/k8s/app-config.yaml')
 
 ### API Services ###
-api_compile_cmd = 'cd services/api-services && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ../../build/api-services ./cmd'
+api_compile_cmd = 'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ../../build/api-services ./cmd'
 if os.name == 'nt':
-  api_compile_cmd = 'cd services/api-services; $env:CGO_ENABLED=0; $env:GOOS="linux"; $env:GOARCH="amd64"; go build -o ../../build/api-services ./cmd'
+  api_compile_cmd = 'powershell -ExecutionPolicy Bypass -File build.ps1'
 
 local_resource(
   'api-services-compile',
   api_compile_cmd,
-  deps=['./services/api-services', './shared'],
+  deps=['./services/api-services'],
   labels=["compiles"],
-  dir='.'
+  dir='./services/api-services'
 )
 
 docker_build_with_restart(
   'uptime/api-services:dev',
   '.',
-  entrypoint=['/app/api-service'],
+  entrypoint=['sh', '-c', 'touch /tmp/.restart-proc && /app/api-service'],
   dockerfile='./infra/development/docker/api-service.Dockerfile',
   only=[
     './services/api-services',
-    './shared',
   ],
   live_update=[
     sync('./services/api-services', '/app/services/api-services'),
-    sync('./shared', '/app/shared'),
-    run('cd /app/services/api-services && CGO_ENABLED=0 GOOS=linux go build -o /app/api-service ./cmd', trigger=['./services/api-services']),
   ],
+  restart_file='/app/.restart-proc',
 )
 
 k8s_yaml('./infra/development/k8s/api-service-deployment.yaml')
@@ -48,6 +46,7 @@ local_resource(
   deps=['./web'],
   serve_cmd='npm run dev',
   dir='./web',
+  resource_deps=['api-services'],
   labels=["web"]
 )
 
