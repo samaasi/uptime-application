@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: uptime-dev
+data:
+  # Database Configuration
+  DB_HOST: "postgres.external.svc.cluster.local"
+  DB_PORT: "5432"
+  DB_NAME: "uptime_dev"
+  DB_SSL_MODE: "disable"
+  
+  # Redis Configuration
+  REDIS_HOST: "redis.external.svc.cluster.local"
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+  
+  # ClickHouse Configuration
+  CLICKHOUSE_HOST: "clickhouse.external.svc.cluster.local"
+  CLICKHOUSE_PORT: "9000"
+  CLICKHOUSE_DATABASE: "uptime_dev"
+  
+  # Application Configuration
+  APP_ENV: "development"
+  APP_DEBUG: "true"
+  LOG_LEVEL: "debug"
+  
+  # API Gateway Configuration
+  API_GATEWAY_PORT: "8081"
+  API_SERVICES_URL: "http://api-services:8082"
+  
+  # API Services Configuration
+  API_SERVICES_PORT: "8082"
+  
+  # Web Configuration
+  WEB_PORT: "3000"
+  NEXT_PUBLIC_API_URL: "http://localhost:8081"
+  
+  # JWT Configuration
+  JWT_EXPIRES_IN: "24h"
+  
+  # OTP Configuration
+  OTP_EXPIRES_IN: "10m"
+  
+  # Email Configuration
+  EMAIL_FROM: "noreply@uptime-dev.local"
+  
+  # Rate Limiting
+  RATE_LIMIT_REQUESTS: "100"
+  RATE_LIMIT_WINDOW: "1m"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secrets
+  namespace: uptime-dev
+type: Opaque
+stringData:
+  # Database Credentials
+  DB_USER: "uptime_user"
+  DB_PASSWORD: "uptime_dev_password"
+  
+  # Redis Password (if needed)
+  REDIS_PASSWORD: ""
+  
+  # ClickHouse Credentials
+  CLICKHOUSE_USER: "uptime_user"
+  CLICKHOUSE_PASSWORD: "uptime_dev_password"
+  
+  # JWT Secret
+  JWT_SECRET: "dev-jwt-secret-key-change-in-production"
+  
+  # Encryption Key
+  ENCRYPTION_KEY: "dev-encryption-key-32-chars-long"
+  
+  # Email Configuration
+  SMTP_HOST: "mailhog.external.svc.cluster.local"
+  SMTP_PORT: "1025"
+  SMTP_USER: ""
+  SMTP_PASSWORD: ""
+  
+  # External Service API Keys (if any)
+  EXTERNAL_API_KEY: "dev-api-key"
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: uptime-dev
+  labels:
+    name: uptime-dev
+    environment: development

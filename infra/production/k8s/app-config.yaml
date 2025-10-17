@@ -1,0 +1,96 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: uptime-prod
+data:
+  # Database Configuration
+  DB_HOST: "postgres.external.svc.cluster.local"
+  DB_PORT: "5432"
+  DB_NAME: "uptime_prod"
+  DB_SSL_MODE: "require"
+  
+  # Redis Configuration
+  REDIS_HOST: "redis.external.svc.cluster.local"
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+  
+  # ClickHouse Configuration
+  CLICKHOUSE_HOST: "clickhouse.external.svc.cluster.local"
+  CLICKHOUSE_PORT: "9000"
+  CLICKHOUSE_DATABASE: "uptime_prod"
+  
+  # Application Configuration
+  APP_ENV: "production"
+  APP_DEBUG: "false"
+  LOG_LEVEL: "info"
+  
+  # API Gateway Configuration
+  API_GATEWAY_PORT: "8081"
+  API_SERVICES_URL: "http://api-services:8082"
+  
+  # API Services Configuration
+  API_SERVICES_PORT: "8082"
+  
+  # Web Configuration
+  WEB_PORT: "3000"
+  NEXT_PUBLIC_API_URL: "https://api.yourdomain.com"
+  
+  # JWT Configuration
+  JWT_EXPIRES_IN: "1h"
+  
+  # OTP Configuration
+  OTP_EXPIRES_IN: "5m"
+  
+  # Email Configuration
+  EMAIL_FROM: "noreply@yourdomain.com"
+  
+  # Rate Limiting
+  RATE_LIMIT_REQUESTS: "60"
+  RATE_LIMIT_WINDOW: "1m"
+  
+  # Security Headers
+  CORS_ALLOWED_ORIGINS: "https://yourdomain.com,https://www.yourdomain.com"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secrets
+  namespace: uptime-prod
+type: Opaque
+stringData:
+  # Database Credentials
+  DB_USER: "uptime_user"
+  DB_PASSWORD: "CHANGE_ME_STRONG_PASSWORD"
+  
+  # Redis Password
+  REDIS_PASSWORD: "CHANGE_ME_REDIS_PASSWORD"
+  
+  # ClickHouse Credentials
+  CLICKHOUSE_USER: "uptime_user"
+  CLICKHOUSE_PASSWORD: "CHANGE_ME_CLICKHOUSE_PASSWORD"
+  
+  # JWT Secret - MUST be changed in production
+  JWT_SECRET: "CHANGE_ME_STRONG_JWT_SECRET_AT_LEAST_32_CHARS"
+  
+  # Encryption Key - MUST be exactly 32 characters
+  ENCRYPTION_KEY: "CHANGE_ME_32_CHAR_ENCRYPTION_KEY"
+  
+  # Email Configuration
+  SMTP_HOST: "smtp.yourdomain.com"
+  SMTP_PORT: "587"
+  SMTP_USER: "noreply@yourdomain.com"
+  SMTP_PASSWORD: "CHANGE_ME_SMTP_PASSWORD"
+  
+  # External Service API Keys
+  EXTERNAL_API_KEY: "CHANGE_ME_EXTERNAL_API_KEY"
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: uptime-prod
+  labels:
+    name: uptime-prod
+    environment: production

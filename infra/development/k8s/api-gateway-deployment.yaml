@@ -1,34 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-services
+  name: api-gateway
   namespace: uptime-dev
   labels:
-    app: api-services
+    app: api-gateway
     environment: development
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api-services
+      app: api-gateway
   template:
     metadata:
       labels:
-        app: api-services
+        app: api-gateway
         environment: development
     spec:
       containers:
-      - name: api-services
-        image: uptime/api-services:dev
+      - name: api-gateway
+        image: uptime/api-gateway:dev
         ports:
-        - containerPort: 8082
+        - containerPort: 8081
           name: http
         env:
         - name: PORT
           valueFrom:
             configMapKeyRef:
               name: app-config
-              key: API_SERVICES_PORT
+              key: API_GATEWAY_PORT
         envFrom:
         - configMapRef:
             name: app-config
@@ -44,13 +44,13 @@ spec:
         livenessProbe:
           httpGet:
             path: /health
-            port: 8082
+            port: 8081
           initialDelaySeconds: 30
           periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /ready
-            port: 8082
+            port: 8081
           initialDelaySeconds: 5
           periodSeconds: 5
         volumeMounts:
@@ -68,17 +68,17 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-services
+  name: api-gateway
   namespace: uptime-dev
   labels:
-    app: api-services
+    app: api-gateway
     environment: development
 spec:
   selector:
-    app: api-services
+    app: api-gateway
   ports:
   - name: http
-    port: 8082
-    targetPort: 8082
+    port: 8081
+    targetPort: 8081
     protocol: TCP
-  type: ClusterIP
+  type: LoadBalancer
