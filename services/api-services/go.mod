@@ -1,4 +1,4 @@
-module github.com/samaasi/uptime-application
+module github.com/samaasi/uptime-application/services/api-services
 
 go 1.25.2
 
