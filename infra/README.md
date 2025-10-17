@@ -8,18 +8,15 @@ This directory contains the Kubernetes infrastructure and Docker configurations 
 infra/
 ├── development/
 │   ├── docker/
-│   │   ├── api-gateway.Dockerfile
 │   │   ├── api-service.Dockerfile
 │   │   └── web.Dockerfile
 │   └── k8s/
 │       ├── app-config.yaml
-│       ├── api-gateway-deployment.yaml
 │       ├── api-service-deployment.yaml
 │       └── web-deployment.yaml
 ├── production/
 │   └── k8s/
 │       ├── app-config.yaml
-│       ├── api-gateway-deployment.yaml
 │       ├── api-services-deployment.yaml
 │       ├── web-deployment.yaml
 │       └── ingress.yaml
@@ -71,7 +68,6 @@ This will:
 ### 4. Access Services
 
 - Web Frontend: http://localhost:3000
-- API Gateway: http://localhost:8081
 - API Services: http://localhost:8082
 
 ### 5. Development Workflow
@@ -97,16 +93,13 @@ This will:
 3. **Build and push images:**
    ```bash
    # Build production images
-   docker build -f infra/development/docker/api-gateway.Dockerfile -t uptime/api-gateway:latest .
    docker build -f infra/development/docker/api-service.Dockerfile -t uptime/api-services:latest .
    docker build -f infra/development/docker/web.Dockerfile -t uptime/web:latest .
    
    # Push to your registry
-   docker tag uptime/api-gateway:latest your-registry/uptime/api-gateway:latest
    docker tag uptime/api-services:latest your-registry/uptime/api-services:latest
    docker tag uptime/web:latest your-registry/uptime/web:latest
    
-   docker push your-registry/uptime/api-gateway:latest
    docker push your-registry/uptime/api-services:latest
    docker push your-registry/uptime/web:latest
    ```
@@ -128,7 +121,7 @@ kubectl get ingress -n uptime-prod
 Point your domain names to the ingress controller's external IP:
 - yourdomain.com → Ingress External IP
 - www.yourdomain.com → Ingress External IP  
-- api.yourdomain.com → Ingress External IP
+- api.yourdomain.com → Ingress External IP (routes directly to api-services)
 
 ### 4. SSL Certificates
 
@@ -171,14 +164,12 @@ If using cert-manager, certificates will be automatically provisioned. Otherwise
 ### Health Checks
 
 All services expose health check endpoints:
-- API Gateway: `/health` and `/ready`
 - API Services: `/health` and `/ready`
 - Web: `/api/health`
 
 ### Metrics
 
 Services are configured with Prometheus annotations for metrics collection:
-- API Gateway: `:8081/metrics`
 - API Services: `:8082/metrics`
 - Web: `:3000/api/metrics`
 
@@ -187,7 +178,7 @@ Services are configured with Prometheus annotations for metrics collection:
 Use kubectl to view logs:
 ```bash
 # View logs for a specific service
-kubectl logs -f deployment/api-gateway -n uptime-prod
+kubectl logs -f deployment/api-services -n uptime-prod
 
 # View logs for all pods with a label
 kubectl logs -f -l app=api-services -n uptime-prod
