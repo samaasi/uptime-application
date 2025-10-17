@@ -5,41 +5,6 @@ load('ext://restart_process', 'docker_build_with_restart')
 # Apply namespace, configmap, and secrets
 k8s_yaml('./infra/development/k8s/app-config.yaml')
 
-### API Gateway ###
-gateway_compile_cmd = 'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o build/api-gateway ./services/api-gateway/cmd'
-if os.name == 'nt':
-  gateway_compile_cmd = 'set CGO_ENABLED=0 && set GOOS=linux && set GOARCH=amd64 && go build -o build/api-gateway ./services/api-gateway/cmd'
-
-local_resource(
-  'api-gateway-compile',
-  gateway_compile_cmd,
-  deps=['./services/api-gateway', './shared'],
-  labels=["compiles"],
-  dir='.'
-)
-
-docker_build_with_restart(
-  'uptime/api-gateway:dev',
-  '.',
-  entrypoint=['/app/api-gateway'],
-  dockerfile='./infra/development/docker/api-gateway.Dockerfile',
-  only=[
-    './services/api-gateway',
-    './shared',
-  ],
-  live_update=[
-    sync('./services/api-gateway', '/app/services/api-gateway'),
-    sync('./shared', '/app/shared'),
-    run('cd /app/services/api-gateway && CGO_ENABLED=0 GOOS=linux go build -o /app/api-gateway ./cmd', trigger=['./services/api-gateway']),
-  ],
-)
-
-k8s_yaml('./infra/development/k8s/api-gateway-deployment.yaml')
-k8s_resource('api-gateway', 
-             port_forwards=['8081:8081'],
-             resource_deps=['api-gateway-compile'], 
-             labels=["services"])
-
 ### API Services ###
 api_compile_cmd = 'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o build/api-services ./services/api-services/cmd'
 if os.name == 'nt':
@@ -83,11 +48,7 @@ local_resource(
   deps=['./web'],
   serve_cmd='npm run dev',
   dir='./web',
-  labels=["web"],
-  port_forwards=['3000:3000'],
-  readiness_probe=probe(
-    http_get=http_get_action(port=3000, path="/api/health")
-  )
+  labels=["web"]
 )
 
 # Alternative: Build and deploy web as container (uncomment if needed)
@@ -121,6 +82,6 @@ local_resource(
 # Health check endpoint for all services
 local_resource(
   'health-check',
-  'echo "Health check endpoints:" && echo "API Gateway: http://localhost:8081/health" && echo "API Services: http://localhost:8082/health" && echo "Web: http://localhost:3000/api/health"',
+  'echo "Health check endpoints:" && echo "API Services: http://localhost:8082/health" && echo "Web: http://localhost:3000/api/health"',
   labels=["info"]
 )

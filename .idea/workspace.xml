@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ee39222-852d-48fb-a900-1e9c17b7ca6d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/GOHCache.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GOHCache.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tiltfile" beforeDir="false" afterPath="$PROJECT_DIR$/Tiltfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/TOOLS_DOC.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/TOOLS_DOC.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/WEB_SERVICE_DOC.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/WEB_SERVICE_DOC.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/api-services/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/services/api-services/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/validate-setup.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/validate-setup.ps1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/api-services/internal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/api-services/internal/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/build-errors.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/web/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/next.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +32,9 @@
     &quot;accountId&quot;: &quot;d731655c-5b6a-4448-8d5c-286c3877c71f&quot;
   }
 }</component>
+  <component name="GoVcsConfiguration">
+    <option name="GO_FMT" value="false" />
+  </component>
   <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
   <component name="KubernetesApiProvider"><![CDATA[{
   "isMigrated": true
@@ -61,6 +53,9 @@
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP82" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="AISelfReview" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -137,8 +132,17 @@
       <workItem from="1754836167691" duration="4875000" />
       <workItem from="1760275614801" duration="1664000" />
       <workItem from="1760643435071" duration="1002000" />
-      <workItem from="1760644636999" duration="2180000" />
+      <workItem from="1760644636999" duration="2926000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: add authentication pages, SVG assets, Dockerfiles, and Tilt config&#10;&#10;- Implement sign-in and sign-up pages with reusable UI components (Card, Label).&#10;- Add Dockerfiles for API Gateway and API Service with non-root user setup.&#10;- Include SVG assets for authentication backgrounds.&#10;- Configure standalone Next.js output and update allowed image domains.&#10;- Add Tiltfile for service compilation, live updates, and Kubernetes deployment.">
+      <option name="closed" value="true" />
+      <created>1760682052849</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1760682052849</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +151,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="feat: add authentication pages, SVG assets, Dockerfiles, and Tilt config&#10;&#10;- Implement sign-in and sign-up pages with reusable UI components (Card, Label).&#10;- Add Dockerfiles for API Gateway and API Service with non-root user setup.&#10;- Include SVG assets for authentication backgrounds.&#10;- Configure standalone Next.js output and update allowed image domains.&#10;- Add Tiltfile for service compilation, live updates, and Kubernetes deployment." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add authentication pages, SVG assets, Dockerfiles, and Tilt config&#10;&#10;- Implement sign-in and sign-up pages with reusable UI components (Card, Label).&#10;- Add Dockerfiles for API Gateway and API Service with non-root user setup.&#10;- Include SVG assets for authentication backgrounds.&#10;- Configure standalone Next.js output and update allowed image domains.&#10;- Add Tiltfile for service compilation, live updates, and Kubernetes deployment." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
