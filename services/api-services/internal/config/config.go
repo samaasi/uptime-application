@@ -154,9 +154,9 @@ func GetConfig() (*Config, error) {
 }
 
 func loadConfig() (*Config, error) {
-	userConfig, err := godotenv.Read(".env.development")
+	userConfig, err := godotenv.Read(".env")
 	if err != nil && !os.IsNotExist(err) {
-		fmt.Printf("warning: could not read .env.development: %v", err)
+		fmt.Printf("warning: could not read .env: %v", err)
 	}
 
 	env := ""

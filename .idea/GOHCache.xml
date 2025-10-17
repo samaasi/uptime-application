@@ -10,10 +10,45 @@
             </set>
           </value>
         </entry>
+        <entry key="Application">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/application.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ApplicationType">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/application.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ApplicationTypeConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/seeder/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ApplicationTypeSeeder">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/seeder/seeder.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="Argon2Params">
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/services/api-services/pkg/security/password.security.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="AuthController">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/controllers/auth.controller.go" />
             </set>
           </value>
         </entry>
@@ -66,6 +101,13 @@
             </set>
           </value>
         </entry>
+        <entry key="Environment">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/environment.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="Error">
           <value>
             <set>
@@ -80,10 +122,24 @@
             </set>
           </value>
         </entry>
+        <entry key="ForgotPasswordRequest">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/auth.dto.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="GenericResponse">
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/services/api-services/internal/utils/response.utils.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="GenericSeeder">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/seeder/seeder.go" />
             </set>
           </value>
         </entry>
@@ -105,6 +161,13 @@
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/services/api-services/internal/api/controllers/health.controller.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="JWTService">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/pkg/security/jwt.service.go" />
             </set>
           </value>
         </entry>
@@ -185,6 +248,27 @@
             </set>
           </value>
         </entry>
+        <entry key="OrganizationType">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/organization.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OrganizationTypeConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/seeder/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OrganizationTypeSeeder">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/seeder/seeder.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="OrganizationUser">
           <value>
             <set>
@@ -217,6 +301,13 @@
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/services/api-services/internal/api/models/authorization.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PermissionConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/seeder/config.go" />
             </set>
           </value>
         </entry>
@@ -276,6 +367,13 @@
             </set>
           </value>
         </entry>
+        <entry key="ResetPasswordRequest">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/auth.dto.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="ResponseBuilder">
           <value>
             <set>
@@ -315,6 +413,27 @@
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/services/api-services/internal/database/interface.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SeedConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/seeder/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SeedError">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/seeder/seeder.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SeedManager">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/seeder/seeder.go" />
             </set>
           </value>
         </entry>
@@ -423,6 +542,13 @@
             </set>
           </value>
         </entry>
+        <entry key="VerifyEmailRequest">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/auth.dto.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="contextKey">
           <value>
             <set>
@@ -465,7 +591,7 @@
         <entry key="file://$PROJECT_DIR$/services/api-services/cmd/main.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760268096553" />
+              <option name="lastModified" value="1760624025806" />
               <option name="schema">
                 <list>
                   <option value="ServiceContainer" />
@@ -474,10 +600,22 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/controllers/auth.controller.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760280432047" />
+              <option name="schema">
+                <list>
+                  <option value="AuthController" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/controllers/health.controller.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760264612555" />
+              <option name="lastModified" value="1760464887072" />
               <option name="schema">
                 <list>
                   <option value="ServiceStatus" />
@@ -491,13 +629,16 @@
         <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/dtos/auth.dto.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760249588972" />
+              <option name="lastModified" value="1760623493475" />
               <option name="schema">
                 <list>
                   <option value="SignInRequestDto" />
                   <option value="SignInResponseDto" />
                   <option value="SignUpRequestDto" />
                   <option value="SignUpResponseDto" />
+                  <option value="ForgotPasswordRequest" />
+                  <option value="ResetPasswordRequest" />
+                  <option value="VerifyEmailRequest" />
                 </list>
               </option>
             </ScannedPath>
@@ -551,6 +692,19 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/models/application.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760618585927" />
+              <option name="schema">
+                <list>
+                  <option value="Application" />
+                  <option value="ApplicationType" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/models/authorization.go">
           <value>
             <ScannedPath>
@@ -563,6 +717,18 @@
                   <option value="UserPermission" />
                   <option value="UserRole" />
                   <option value="Policy" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/models/environment.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760618077331" />
+              <option name="schema">
+                <list>
+                  <option value="Environment" />
                 </list>
               </option>
             </ScannedPath>
@@ -583,11 +749,12 @@
         <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/models/organization.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760267879940" />
+              <option name="lastModified" value="1760618862142" />
               <option name="schema">
                 <list>
                   <option value="Organization" />
                   <option value="OrganizationUser" />
+                  <option value="OrganizationType" />
                 </list>
               </option>
             </ScannedPath>
@@ -596,7 +763,7 @@
         <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/models/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760274550427" />
+              <option name="lastModified" value="1760281460493" />
               <option name="schema">
                 <list>
                   <option value="User" />
@@ -646,14 +813,14 @@
         <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/router/routes.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760274754425" />
+              <option name="lastModified" value="1760284241719" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/services/api-services/internal/api/services/auth.service.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760275459374" />
+              <option name="lastModified" value="1760623712311" />
               <option name="schema">
                 <list>
                   <option value="AuthService" />
@@ -703,7 +870,7 @@
         <entry key="file://$PROJECT_DIR$/services/api-services/internal/config/config.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760266450791" />
+              <option name="lastModified" value="1760645206470" />
               <option name="schema">
                 <list>
                   <option value="Config" />
@@ -772,13 +939,40 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/seeder/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760624081081" />
+              <option name="schema">
+                <list>
+                  <option value="SeedConfig" />
+                  <option value="PermissionConfig" />
+                  <option value="OrganizationTypeConfig" />
+                  <option value="ApplicationTypeConfig" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/internal/seeder/config_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760623312239" />
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/services/api-services/internal/seeder/seeder.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1760261478329" />
+              <option name="lastModified" value="1760623187981" />
               <option name="schema">
                 <list>
+                  <option value="SeedError" />
+                  <option value="GenericSeeder" />
                   <option value="PermissionSeeder" />
+                  <option value="OrganizationTypeSeeder" />
+                  <option value="ApplicationTypeSeeder" />
+                  <option value="SeedManager" />
                 </list>
               </option>
             </ScannedPath>
@@ -930,6 +1124,18 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/services/api-services/pkg/security/jwt.service.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1760281690681" />
+              <option name="schema">
+                <list>
+                  <option value="JWTService" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/services/api-services/pkg/security/password.security.go">
           <value>
             <ScannedPath>
@@ -979,7 +1185,12 @@
     <option name="tableStructMapping">
       <map>
         <entry key="app_config" value="AppConfig" />
+        <entry key="application" value="Application" />
+        <entry key="application_type" value="ApplicationType" />
+        <entry key="application_type_config" value="ApplicationTypeConfig" />
+        <entry key="application_type_seeder" value="ApplicationTypeSeeder" />
         <entry key="argon2_params" value="Argon2Params" />
+        <entry key="auth_controller" value="AuthController" />
         <entry key="auth_service" value="AuthService" />
         <entry key="basic_template_renderer" value="BasicTemplateRenderer" />
         <entry key="click_house_client" value="ClickHouseClient" />
@@ -988,12 +1199,16 @@
         <entry key="config" value="Config" />
         <entry key="context_key" value="contextKey" />
         <entry key="email_config" value="EmailConfig" />
+        <entry key="environment" value="Environment" />
         <entry key="error" value="Error" />
         <entry key="error_details" value="ErrorDetails" />
+        <entry key="forgot_password_request" value="ForgotPasswordRequest" />
         <entry key="generic_response" value="GenericResponse" />
+        <entry key="generic_seeder" value="GenericSeeder" />
         <entry key="gorm_zap_logger" value="GormZapLogger" />
         <entry key="health_controller" value="HealthController" />
         <entry key="health_response" value="HealthResponse" />
+        <entry key="jwt_service" value="JWTService" />
         <entry key="local_storage_config" value="LocalStorageConfig" />
         <entry key="local_storage_driver" value="LocalStorageDriver" />
         <entry key="logger_config" value="LoggerConfig" />
@@ -1002,6 +1217,9 @@
         <entry key="model" value="Model" />
         <entry key="noop_service" value="NoopService" />
         <entry key="organization" value="Organization" />
+        <entry key="organization_type" value="OrganizationType" />
+        <entry key="organization_type_config" value="OrganizationTypeConfig" />
+        <entry key="organization_type_seeder" value="OrganizationTypeSeeder" />
         <entry key="organization_user" value="OrganizationUser" />
         <entry key="otp" value="OTP" />
         <entry key="otp_config" value="OTPConfig" />
@@ -1012,6 +1230,7 @@
         <entry key="parsed_hash" value="parsedHash" />
         <entry key="payload" value="Payload" />
         <entry key="permission" value="Permission" />
+        <entry key="permission_config" value="PermissionConfig" />
         <entry key="permission_seeder" value="PermissionSeeder" />
         <entry key="policy" value="Policy" />
         <entry key="postgres_client" value="PostgresClient" />
@@ -1021,9 +1240,13 @@
         <entry key="redis_client_options" value="RedisClientOptions" />
         <entry key="redis_config" value="RedisConfig" />
         <entry key="redis_metrics" value="redisMetrics" />
+        <entry key="reset_password_request" value="ResetPasswordRequest" />
         <entry key="response_builder" value="ResponseBuilder" />
         <entry key="role" value="Role" />
         <entry key="role_permission" value="RolePermission" />
+        <entry key="seed_config" value="SeedConfig" />
+        <entry key="seed_error" value="SeedError" />
+        <entry key="seed_manager" value="SeedManager" />
         <entry key="service" value="Service" />
         <entry key="service_container" value="ServiceContainer" />
         <entry key="service_impl" value="ServiceImpl" />
@@ -1043,8 +1266,9 @@
         <entry key="user_request_dto" value="UserRequestDto" />
         <entry key="user_response_dto" value="UserResponseDto" />
         <entry key="user_role" value="UserRole" />
+        <entry key="verify_email_request" value="VerifyEmailRequest" />
       </map>
     </option>
-    <option name="lastTimeChecked" value="1760275609170" />
+    <option name="lastTimeChecked" value="1760643426455" />
   </component>
 </project>
