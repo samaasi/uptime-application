@@ -6,9 +6,9 @@ load('ext://restart_process', 'docker_build_with_restart')
 k8s_yaml('./infra/development/k8s/app-config.yaml')
 
 ### API Services ###
-api_compile_cmd = 'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o build/api-services ./services/api-services/cmd'
+api_compile_cmd = 'cd services/api-services && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ../../build/api-services ./cmd'
 if os.name == 'nt':
-  api_compile_cmd = '$env:CGO_ENABLED=0; $env:GOOS="linux"; $env:GOARCH="amd64"; go build -o build/api-services ./services/api-services/cmd'
+  api_compile_cmd = 'cd services/api-services; $env:CGO_ENABLED=0; $env:GOOS="linux"; $env:GOARCH="amd64"; go build -o ../../build/api-services ./cmd'
 
 local_resource(
   'api-services-compile',
