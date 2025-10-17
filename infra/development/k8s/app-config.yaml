@@ -4,16 +4,19 @@ metadata:
   name: app-config
   namespace: uptime-dev
 data:
-  # Database Configuration
-  DB_HOST: "postgres.external.svc.cluster.local"
+  # Database Configuration (External PostgreSQL)
+  DB_HOST: "136.68.174.122"
   DB_PORT: "5432"
-  DB_NAME: "uptime_dev"
+  DB_NAME: "uptimeAppDB"
   DB_SSL_MODE: "disable"
   
-  # Redis Configuration
-  REDIS_HOST: "redis.external.svc.cluster.local"
+  # Redis Configuration (External Redis)
+  REDIS_HOST: "136.68.174.122"
   REDIS_PORT: "6379"
-  REDIS_DB: "0"
+  REDIS_DB: "1"
+  REDIS_POOL_SIZE: "100"
+  REDIS_MIN_IDLE_CONNS: "10"
+  REDIS_MAX_CONN_AGE: "1h"
   
   # ClickHouse Configuration (Local Default)
   CLICKHOUSE_HOST: "127.0.0.1"
@@ -57,12 +60,12 @@ metadata:
   namespace: uptime-dev
 type: Opaque
 stringData:
-  # Database Credentials
-  DB_USER: "uptime_user"
-  DB_PASSWORD: "uptime_dev_password"
+  # Database Credentials (External PostgreSQL)
+  DB_USER: "postgres"
+  DB_PASSWORD: "zTp6LmXq9vMrRr2cY1W6ZA"
   
-  # Redis Password (if needed)
-  REDIS_PASSWORD: ""
+  # Redis Password (External Redis)
+  REDIS_PASSWORD: "zTp6LmXq9Wx"
   
   # ClickHouse Credentials (Local Default - no auth)
   CLICKHOUSE_USER: ""
