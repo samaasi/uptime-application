@@ -15,10 +15,10 @@ data:
   REDIS_PORT: "6379"
   REDIS_DB: "0"
   
-  # ClickHouse Configuration
-  CLICKHOUSE_HOST: "clickhouse.external.svc.cluster.local"
+  # ClickHouse Configuration (Local Default)
+  CLICKHOUSE_HOST: "127.0.0.1"
   CLICKHOUSE_PORT: "9000"
-  CLICKHOUSE_DATABASE: "uptime_dev"
+  CLICKHOUSE_DATABASE: "default"
   
   # Application Configuration
   APP_ENV: "development"
@@ -64,9 +64,9 @@ stringData:
   # Redis Password (if needed)
   REDIS_PASSWORD: ""
   
-  # ClickHouse Credentials
-  CLICKHOUSE_USER: "uptime_user"
-  CLICKHOUSE_PASSWORD: "uptime_dev_password"
+  # ClickHouse Credentials (Local Default - no auth)
+  CLICKHOUSE_USER: ""
+  CLICKHOUSE_PASSWORD: ""
   
   # JWT Secret
   JWT_SECRET: "dev-jwt-secret-key-change-in-production"
